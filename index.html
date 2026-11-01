@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calendario Northwood</title>
+<meta name="description" content="Planeación anual de eventos de Iglesia Northwood">
+<meta property="og:title" content="Calendario Northwood 2027">
+<meta property="og:description" content="Caminemos juntos a su presencia 2027 · Planeación anual de eventos de Iglesia Northwood">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#00babc">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Paleta Iglesia Northwood (DESIGN v3): teal = casa, naranja = apoyo, azul = logística, negro = estructura */
+  --bg:#f5f6f6; --card:#ffffff; --ink:#1c1e1e; --body:#4a4d4d; --muted:#6e7272; --line:#dcdede;
+  --sun:#c2f0f1; --sun-ink:#00565a;            /* teal 200 / 800 */
+  --wed:#c2f0f1; --wed-ink:#00565a;            /* teal 200 / 800 (igual que domingo) */
+  --iglesia:#5cbef3; --grupo:#c4491d; --ig-ink:#052f45; --gr-ink:#ffffff;  /* blue 400 / orange 600 */
+  --hol:#000000; --hol-bg:rgba(0,0,0,.13);     /* negro estructural */
+  --rec1:#000000; --rec2:#9a9d9d; --rec-bg:#fff0de;  /* negro + cream */
+  --warn:#a03c16;                              /* orange 700 */
+  --sel:#000000;
+  --c-espiritual:#00696b; --c-formacion:#0a5f8c; --c-comunidad:#c4491d;
+  --c-celebracion:#a03c16; --c-produccion:#00565a; --c-misiones:#f15d2c; --c-otro:#6e7272;
+  --shadow:0 1px 2px rgba(0,0,0,.05),0 1px 3px rgba(0,0,0,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .brand .lema{color:#4fd0d1}
+  :root:not([data-theme="light"]) .draft{background:#3a2c1c;color:#fff;border-left-color:#fff}
+  :root:not([data-theme="light"]) .warnbox{background:#4d1c0a;color:#fcd2c1}
+  :root:not([data-theme="light"]) .alerts .ic{background:#fff;color:#000}
+  :root:not([data-theme="light"]){
+    --bg:#1c1e1e; --card:#2a2d2d; --ink:#ffffff; --body:#d6d8d8; --muted:#b9bcbc; --line:#3d4141;
+    --sun:#00343a; --sun-ink:#c2f0f1; --wed:#00343a; --wed-ink:#c2f0f1; --iglesia:#5cbef3; --grupo:#f68a62; --ig-ink:#000000; --gr-ink:#000000;
+    --hol:#ffffff; --hol-bg:rgba(255,255,255,.14); --rec1:#ffffff; --rec2:#6e7272; --rec-bg:rgba(255,240,222,.12); --warn:#f68a62; --sel:#ffffff;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1c1e1e; --card:#2a2d2d; --ink:#ffffff; --body:#d6d8d8; --muted:#b9bcbc; --line:#3d4141;
+  --sun:#00343a; --sun-ink:#c2f0f1; --wed:#00343a; --wed-ink:#c2f0f1; --iglesia:#5cbef3; --grupo:#f68a62; --ig-ink:#000000; --gr-ink:#000000;
+  --hol:#ffffff; --hol-bg:rgba(255,255,255,.14); --rec1:#ffffff; --rec2:#6e7272; --rec-bg:rgba(255,240,222,.12); --warn:#f68a62; --sel:#ffffff;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:14px/1.5 Montserrat,'Helvetica Neue',system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1400px;margin:0 auto;padding:16px}
+header.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between;margin-bottom:12px}
+.brand h1{margin:0;font:700 30px/1.05 'League Spartan',Montserrat,sans-serif;letter-spacing:-.015em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#yearLabel{background:#000;color:#fff;border-radius:999px;padding:4px 14px 2px;font-size:24px}
+.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 12px;cursor:pointer;box-shadow:var(--shadow);font-weight:500}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.danger{color:var(--warn);border-color:var(--warn)}
+.btn.small{padding:4px 8px;font-size:12px;border-radius:8px;box-shadow:none}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;border:1px solid var(--line);background:var(--card)}
+.pill.edit{background:#fdefea;color:#a03c16;border-color:#fab094}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pill.edit{background:#4d1c0a;color:#fcd2c1;border-color:#7d2f10}}
+select.year{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:7px 10px;font-weight:600}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:12.5px}
+.legend .sw{width:18px;height:18px;border-radius:5px;display:inline-block;vertical-align:middle;margin-right:6px;position:relative}
+.legend label{display:inline-flex;align-items:center;gap:6px;color:var(--muted);cursor:pointer}
+
+.layout{display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start}
+@media (max-width:1100px){.layout{grid-template-columns:minmax(0,1fr)}}
+aside.side{min-width:0}
+
+main{min-width:0}
+.months{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr));gap:12px}
+@media (max-width:520px){.day{aspect-ratio:auto;height:40px}.wrap{padding:12px}}
+.month{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow)}
+.mhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.mhead h3{margin:0;font-size:15px}
+.mstat{font-size:11.5px;color:var(--muted)}
+.loadrow{display:flex;align-items:center;gap:8px;margin:4px 0 8px}
+.lvlw{font-size:10.5px;font-weight:700;color:var(--muted);white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+.load{flex:1;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.load > i{display:block;height:100%;border-radius:99px}
+.lvl-0{background:#8ee2e3}.lvl-1{background:#00babc}.lvl-2{background:#f15d2c}.lvl-3{background:#a03c16}
+.dow,.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.dow span{font-size:10.5px;color:var(--muted);text-align:center;font-weight:600}
+.day{position:relative;aspect-ratio:1/1;border-radius:7px;display:flex;align-items:flex-start;justify-content:center;padding-top:3px;font-size:12px;cursor:pointer;border:0;user-select:none;-webkit-user-select:none}
+.day.empty{cursor:default}
+.day:not(.empty):hover{box-shadow:inset 0 0 0 1px var(--muted)}
+.day.sun{background:var(--sun);color:var(--sun-ink);font-weight:600}
+.day.wed{background:var(--wed);color:var(--wed-ink);font-weight:600}
+.day.evsun{background:var(--evc);color:var(--evi);font-weight:700}
+.day.evsun.tent{background:color-mix(in srgb,var(--evc) 28%,var(--card));color:var(--ink);border:2px dashed var(--evc)}
+.day.evwk{background:color-mix(in srgb,var(--evc) 20%,var(--card));font-weight:600}
+.day.evwk.tent{background:color-mix(in srgb,var(--evc) 7%,var(--card));border:2px dashed var(--evc)}
+.dots i.hollow{background:transparent!important;box-shadow:inset 0 0 0 1.5px var(--c)}
+.day.hol::before{content:"";position:absolute;inset:0;border-radius:7px;background:repeating-linear-gradient(135deg,var(--hol-bg) 0 4px,transparent 4px 8px);box-shadow:inset 0 0 0 2px var(--hol);pointer-events:none}
+.day.holday{font-weight:800;text-decoration:underline;text-underline-offset:2px}
+.day.special::after{content:"★";position:absolute;top:0;right:2px;font-size:8px;color:var(--hol)}
+.dots{position:absolute;bottom:3px;left:0;right:0;display:flex;justify-content:center;gap:2px}
+.dots i{width:5px;height:5px;border-radius:50%;display:block;box-shadow:0 0 0 1px var(--card)}
+.day.tent.hol::before{inset:-2px}
+.day.today{outline:2px solid var(--ink);outline-offset:1px}
+.day.rec-a{box-shadow:inset 0 0 0 3px var(--rec1);background:var(--rec-bg)}
+.day.rec-b{box-shadow:inset 0 0 0 2px var(--rec2)}
+.day.selected{outline:2px solid var(--sel);outline-offset:1px}
+.day.drop{outline:2px dashed var(--ink)}
+.editing .day{-webkit-touch-callout:none}
+.day.drag-src{opacity:.35}
+.day.ghost{box-shadow:inset 0 0 0 2px var(--ink)!important;background:color-mix(in srgb,var(--gc) 45%,var(--card))!important;color:var(--ink)!important;transform:scale(1.04);z-index:2}
+.day.ghost.bad{box-shadow:inset 0 0 0 2px var(--warn)!important}
+.day.holding{animation:hold .35s ease-out forwards}
+@keyframes hold{to{transform:scale(.9)}}
+body.dragging{cursor:grabbing;user-select:none;-webkit-user-select:none}
+body.dragging .day{cursor:grabbing}
+.dragchip{position:fixed;z-index:70;pointer-events:none;background:#000;color:#fff;border-radius:10px;padding:7px 11px;font-size:12.5px;font-weight:600;box-shadow:6px 6px 0 rgba(0,0,0,.18);transform:translate(-50%,-130%);white-space:nowrap;display:none;max-width:90vw;overflow:hidden;text-overflow:ellipsis}
+.dragchip small{display:block;font-weight:500;opacity:.8;font-size:11.5px}
+.dragchip .w{color:#fab094}
+.movemode .day:not(.empty){cursor:copy}
+
+aside.side{display:flex;flex-direction:column;gap:12px;position:sticky;top:12px}
+@media (max-width:1100px){aside.side{position:static}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+.panel h2{margin:0 0 10px;font-size:15px}
+.panel .sub{color:var(--muted);font-size:12.5px;margin:-6px 0 10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.row > *{flex:1;min-width:0}
+.field label{display:block;font-size:11.5px;color:var(--muted);margin-bottom:3px;font-weight:600}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:7px 9px}
+.field textarea{min-height:56px;resize:vertical}
+.reclist{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.reclist li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.reclist li:hover{border-color:var(--muted)}
+.score{font-weight:700;min-width:38px;text-align:center;border-radius:8px;padding:2px 6px;font-size:12px}
+.score.a{background:var(--rec1);color:var(--card)}.score.b{background:var(--rec2);color:var(--ink)}.score.c{background:var(--line)}
+.why{font-size:11.5px;color:var(--muted)}
+.evlist{display:flex;flex-direction:column;gap:4px;max-height:420px;overflow:auto;margin:0 -4px;padding:0 4px}
+.evmonth{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;margin:8px 0 2px}
+.ev{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;border:1px solid transparent;cursor:pointer}
+.ev:hover{background:var(--bg);border-color:var(--line)}
+.ev .c{width:8px;height:8px;border-radius:50%;flex:none}
+.ev .n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev .d{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.tent{flex:none;font-size:10px;font-weight:700;color:var(--muted);border:1px dashed var(--muted);border-radius:4px;padding:0 4px;margin-left:4px}
+.ev.dragging{opacity:.4}
+.daybox .item{display:flex;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.daybox .item:last-child{border-bottom:none}
+.tag{font-size:11px;padding:2px 7px;border-radius:999px;font-weight:600;background:var(--bg);border:1px solid var(--line)}
+.tag.hol{color:var(--hol);border-color:var(--hol)}
+.muted{color:var(--muted)}
+.status{font-size:12px;color:var(--muted)}
+.status.err{color:var(--warn)}
+.banner{background:#111827;color:#fff;border-radius:12px;padding:10px 14px;margin-bottom:12px;display:none;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.banner.show{display:flex}
+.brand .lema{margin:4px 0 0;font:italic 700 16px/1.3 Montserrat,sans-serif;color:#00696b}
+.draft{display:none;align-items:center;gap:10px;background:#fff0de;color:#1c1e1e;border-left:4px solid #000;border-radius:10px;padding:9px 14px;margin-bottom:12px;font-size:13px}
+.draft.show{display:flex}
+.draft b{font-weight:700}
+.btn:disabled{opacity:.4;cursor:default}
+.alerts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;max-height:260px;overflow:auto}
+.alerts li{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;padding:7px 9px;border-radius:9px;background:var(--bg);border:1px solid var(--line);cursor:pointer}
+.alerts li:hover{border-color:var(--muted)}
+.alerts .ic{flex:none;width:18px;height:18px;border-radius:50%;background:#000;color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center;margin-top:1px}
+.alerts .ic.w{background:#a03c16}
+.alerts small{display:block;color:var(--muted);font-size:11.5px}
+.warnbox{display:none;background:#fdefea;color:#7d2f10;border-radius:9px;padding:8px 10px;margin:4px 0 10px;font-size:12.5px}
+.warnbox.show{display:block}
+.warnbox div{display:flex;gap:6px}.warnbox div::before{content:"⚠";flex:none}
+@media print{
+  @page{size:letter landscape;margin:9mm}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;color:#000;font-size:9px}
+  .wrap{max-width:none;padding:0}
+  .actions,aside.side,.banner,.tip,.toast,dialog,.legend label{display:none!important}
+  header.top{margin-bottom:4px}
+  .brand h1{font-size:20px}#yearLabel{font-size:16px}
+  .brand p:not(.lema){display:none}.brand .lema{font-size:11px;margin:0}
+  .draft{padding:3px 8px;margin-bottom:4px;font-size:9px}
+  .legend{padding:4px 8px;margin-bottom:5px;font-size:8.5px;gap:3px 12px;box-shadow:none}
+  .legend .sw{width:11px;height:11px}
+  .layout{display:block}
+  .months{grid-template-columns:repeat(4,1fr)!important;gap:5px}
+  .month{padding:5px 6px;box-shadow:none;border-radius:8px;break-inside:avoid}
+  .mhead h3{font-size:10px}.mstat{font-size:7px}.loadrow{margin:2px 0 3px}.lvlw{font-size:6.5px}.load{height:3px}
+  .dow span{font-size:7px}.dow,.grid{gap:1.5px}
+  .day{aspect-ratio:auto;height:19px;font-size:8px;padding-top:1px;border-radius:4px}
+  .day.hol::before{border-radius:4px}
+  .dots{bottom:1px}.dots i{width:3px;height:3px}
+  .day.today,.day.selected{outline:none}
+}
+
+dialog{border:none;border-radius:16px;padding:0;max-width:440px;width:calc(100% - 32px);background:var(--card);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(10,12,18,.45)}
+dialog form{padding:18px}
+dialog h3{margin:0 0 12px;font-size:17px}
+.dlg-actions{display:flex;justify-content:space-between;gap:8px;margin-top:14px;flex-wrap:wrap}
+.dlg-actions .r{display:flex;gap:8px;margin-left:auto}
+.help{font-size:12px;color:var(--muted);line-height:1.5}
+.help ol{padding-left:18px;margin:6px 0}
+.chk{display:flex;align-items:center;gap:8px;font-size:13px}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:500;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50;max-width:calc(100% - 32px)}
+.toast.show{opacity:1}
+.tip{position:fixed;z-index:60;pointer-events:none;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:0 10px 30px rgba(0,0,0,.18);width:max-content;max-width:260px;font-size:12.5px;opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s}
+.tip.show{opacity:1;transform:none}
+.tip .t-date{font-weight:700;margin-bottom:6px}
+.tip .t-ev{display:flex;gap:8px;align-items:flex-start;margin:4px 0}
+.tip .t-ev i{width:8px;height:8px;border-radius:50%;margin-top:5px;flex:none}
+.tip .t-ev b{font-weight:600;display:block}
+.tip .t-sub{color:var(--muted);font-size:11.5px}
+.tip .t-meta{color:var(--muted);font-size:11.5px;margin-top:6px;padding-top:6px;border-top:1px solid var(--line)}
+.tip .t-meta.hol{color:var(--hol)}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>Calendario Northwood <span id="yearLabel"></span></h1>
+      <p class="lema" id="lema"></p>
+      <p>Planeación anual de eventos · domingos, servicio entre semana, festivos y carga por mes</p>
+    </div>
+    <div class="actions">
+      <select class="year" id="yearSel" aria-label="Año"></select>
+      <span class="pill" id="modePill">Solo ver</span>
+      <span class="status" id="saveStatus"></span>
+      <button class="btn hide" id="undoBtn" disabled title="Deshacer el último cambio (Ctrl/⌘+Z)">↶ Deshacer</button>
+      <button class="btn" id="printBtn" title="Imprimir o guardar como PDF">Imprimir / PDF</button>
+      <button class="btn" id="editBtn">Editar</button>
+      <button class="btn primary hide" id="addBtn">+ Evento</button>
+    </div>
+  </header>
+
+  <div class="draft" id="draft"></div>
+
+  <div class="banner" id="moveBanner">
+    <span id="moveText">Toca el nuevo día de inicio para mover el evento.</span>
+    <button class="btn small" id="moveCancel">Cancelar</button>
+  </div>
+
+  <div class="legend">
+    <span><span class="sw" style="background:var(--sun)"></span>Servicio (domingo y Servicio Entre Semana)</span>
+    <span><span class="sw" style="background:var(--iglesia)"></span>Evento para toda la iglesia</span>
+    <span><span class="sw" style="background:var(--grupo)"></span>Evento de grupo específico</span>
+    <span><span class="sw" style="border:2px dashed var(--muted)"></span>Tentativo (por confirmar)</span>
+    <span><span class="sw" style="background:repeating-linear-gradient(135deg,var(--hol-bg) 0 4px,transparent 4px 8px);box-shadow:inset 0 0 0 2px var(--hol)"></span>Fin de semana festivo (EE. UU.)</span>
+    <span><span class="sw" style="box-shadow:inset 0 0 0 3px var(--rec1);background:var(--rec-bg)"></span>Fecha recomendada</span>
+    <label><input type="checkbox" id="showSpecial" checked> ★ Fechas especiales</label>
+  </div>
+
+  <div class="layout">
+    <main><div class="months" id="months"></div></main>
+
+    <aside class="side">
+      <section class="panel" id="alertPanel">
+        <h2>Alertas <span class="muted" id="alertCount"></span></h2>
+        <p class="sub">Lo que conviene revisar: festivos, choques, eventos pegados y meses muy cargados.</p>
+        <ul class="alerts" id="alertList"></ul>
+      </section>
+      <section class="panel" id="recPanel">
+        <h2>Sugerir fechas</h2>
+        <p class="sub">Para un evento que no cae en domingo. Evita domingos con evento, festivos y semanas cargadas.</p>
+        <div class="row">
+          <div class="field"><label for="recDow">Día</label>
+            <select id="recDow">
+              <option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option>
+              <option value="4">Jueves</option><option value="5">Viernes</option><option value="6" selected>Sábado</option><option value="0">Domingo</option>
+            </select></div>
+          <div class="field"><label for="recDur">Duración</label>
+            <select id="recDur"><option value="1">1 día</option><option value="2">2 días</option><option value="3">3 días</option><option value="4">4 días</option><option value="5">5 días</option><option value="7">1 semana</option></select></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="recFrom">Desde</label><select id="recFrom"></select></div>
+          <div class="field"><label for="recTo">Hasta</label><select id="recTo"></select></div>
+        </div>
+        <div class="row" style="margin-bottom:0">
+          <button class="btn primary" id="recGo">Sugerir</button>
+          <button class="btn" id="recClear">Limpiar</button>
+        </div>
+        <ul class="reclist" id="recList"></ul>
+      </section>
+
+      <section class="panel daybox hide" id="dayPanel"></section>
+
+      <section class="panel">
+        <h2>Eventos <span class="muted" id="evCount"></span></h2>
+        <p class="sub" id="evHint">Toca un evento para ver detalles.</p>
+        <div class="evlist" id="evList"></div>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<!-- Evento -->
+<dialog id="evDlg">
+  <form method="dialog" id="evForm">
+    <h3 id="evDlgTitle">Evento</h3>
+    <div class="field" style="margin-bottom:8px"><label for="fName">Nombre</label><input id="fName" required maxlength="80"></div>
+    <div class="row">
+      <div class="field"><label for="fStart">Inicio</label><input type="date" id="fStart" required></div>
+      <div class="field"><label for="fEnd">Fin</label><input type="date" id="fEnd" required></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="fPub">Para quién</label>
+        <select id="fPub"><option value="iglesia">Toda la iglesia</option><option value="grupo">Grupo específico</option></select></div>
+      <div class="field" id="fGrupoWrap"><label for="fGrupo">¿Qué grupo?</label><input id="fGrupo" maxlength="40" placeholder="Ej. Hombres, Jóvenes"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="fCat">Categoría</label>
+        <select id="fCat">
+          <option value="espiritual">Espiritual (ayuno, vigilia)</option>
+          <option value="formacion">Formación (ADN, capacitación, talleres)</option>
+          <option value="comunidad">Comunidad (campamentos, congresos)</option>
+          <option value="celebracion">Celebración (bautismos, días especiales)</option>
+          <option value="produccion">Producción</option>
+          <option value="misiones">Misiones / alcance</option>
+          <option value="otro">Otro</option>
+        </select></div>
+    </div>
+    <div class="field" style="margin-bottom:8px"><label for="fNotes">Notas</label><textarea id="fNotes" maxlength="400"></textarea></div>
+    <div class="warnbox" id="evWarn"></div>
+    <label class="chk"><input type="checkbox" id="fTent"> Fecha tentativa (por confirmar)</label>
+    <div class="dlg-actions">
+      <div>
+        <button type="button" class="btn danger hide" id="evDelete">Borrar</button>
+        <button type="button" class="btn hide" id="evMove">Mover</button>
+      </div>
+      <div class="r">
+        <button type="button" class="btn" id="evCancel">Cancelar</button>
+        <button type="submit" class="btn primary" id="evSave">Guardar</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<!-- Login -->
+<dialog id="loginDlg">
+  <form method="dialog" id="loginForm">
+    <h3>Modo edición</h3>
+    <div class="field" style="margin-bottom:8px"><label for="lPass">Contraseña</label><input type="password" id="lPass" autocomplete="current-password" required></div>
+    <p class="status err" id="lErr"></p>
+    <div class="dlg-actions"><div class="r">
+      <button type="button" class="btn" id="lCancel">Cancelar</button>
+      <button type="submit" class="btn primary">Entrar</button>
+    </div></div>
+  </form>
+</dialog>
+
+<!-- Configuración inicial -->
+<dialog id="setupDlg">
+  <form method="dialog" id="setupForm">
+    <h3>Configurar edición (una sola vez)</h3>
+    <div class="help">
+      Para que los cambios se guarden en GitHub, la página necesita un token con permiso solo sobre este repo:
+      <ol>
+        <li>GitHub → Settings → Developer settings → <b>Fine-grained tokens</b> → Generate new token.</li>
+        <li>Repository access: <b>Only select repositories</b> → este repo.</li>
+        <li>Permissions → Repository → <b>Contents: Read and write</b>.</li>
+        <li>Pega el token aquí y elige la contraseña de edición.</li>
+      </ol>
+      El token se guarda cifrado con la contraseña. Quien no la tenga solo puede ver.
+    </div>
+    <div class="field" style="margin:10px 0 8px"><label for="sTok">Token de GitHub</label><input id="sTok" required autocomplete="off" placeholder="github_pat_..."></div>
+    <div class="row">
+      <div class="field"><label for="sPass">Contraseña de edición</label><input type="password" id="sPass" required minlength="8" autocomplete="new-password"></div>
+      <div class="field"><label for="sPass2">Repetir</label><input type="password" id="sPass2" required minlength="8" autocomplete="new-password"></div>
+    </div>
+    <p class="status err" id="sErr"></p>
+    <div class="dlg-actions"><div class="r">
+      <button type="button" class="btn" id="sCancel">Cancelar</button>
+      <button type="submit" class="btn primary">Guardar configuración</button>
+    </div></div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast"></div>
+<div class="tip" id="tip" role="tooltip"></div>
+<div class="dragchip" id="dragChip"></div>
+
+<script>
+(() => {
+/* ================= Configuración ================= */
+// En GitHub Pages se detecta solo (usuario.github.io/repo). Se puede fijar aquí si hace falta.
+const CONFIG = { owner: null, repo: null, branch: "main", dataFile: "eventos.json", editorFile: "editor.json" };
+(function detect(){
+  const h = location.hostname, p = location.pathname.split("/").filter(Boolean);
+  if (!CONFIG.owner && h.endsWith(".github.io")) CONFIG.owner = h.replace(".github.io","");
+  if (!CONFIG.repo && h.endsWith(".github.io") && p.length) CONFIG.repo = p[0];
+})();
+const ONLINE = !!(CONFIG.owner && CONFIG.repo);
+const LOCAL_EDIT = new URLSearchParams(location.search).has("local") || !!window.NW_PREVIEW; // prueba local sin GitHub
+
+const MONTHS = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const MSHORT = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+const DOWS = ["D","L","M","M","J","V","S"];
+const DOWL = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const CATS = {espiritual:"Espiritual",formacion:"Formación",comunidad:"Comunidad",celebracion:"Celebración",produccion:"Producción",misiones:"Misiones",otro:"Otro"};
+
+/* ================= Estado ================= */
+let data = { anio: 2027, eventos: [] };
+let year = 2027;
+let sha = null;          // sha de eventos.json en GitHub
+let token = null;        // token descifrado (solo en memoria / sesión)
+let editing = false;
+let recs = new Map();    // fecha -> score
+let selectedDate = null;
+let moving = null;       // id del evento que se mueve
+let DAYMAP = new Map();
+let undoStack = [];      // instantáneas antes de cada cambio
+let base = null;         // última versión sincronizada con GitHub (texto JSON)
+let saveTimer = null, saving = false, dirty = false, pendingSave = false;
+
+const $ = s => document.querySelector(s);
+const ss = { get(k){ try{return sessionStorage.getItem(k)}catch(e){return null} }, set(k,v){ try{sessionStorage.setItem(k,v)}catch(e){} }, del(k){ try{sessionStorage.removeItem(k)}catch(e){} } };
+
+/* ================= Fechas ================= */
+const pad = n => String(n).padStart(2,"0");
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y,m-1,d); };
+const addDays = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const diffDays = (a,b) => Math.round((parse(b)-parse(a))/86400000);
+const fmt = s => { const d = parse(s); return `${DOWL[d.getDay()].slice(0,3)} ${d.getDate()} ${MSHORT[d.getMonth()]}`; };
+const fmtRange = (a,b) => a===b ? fmt(a) : `${fmt(a)} – ${fmt(b)}`;
+const todayIso = iso(new Date());
+
+function nthDow(y,m,dow,n){ const d = new Date(y,m,1); const off = (dow - d.getDay() + 7) % 7; return new Date(y,m,1+off+(n-1)*7); }
+function lastDow(y,m,dow){ const d = new Date(y,m+1,0); const off = (d.getDay() - dow + 7) % 7; return new Date(y,m,d.getDate()-off); }
+function easter(y){ const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1; return new Date(y,mo-1,da); }
+
+// Festivos federales de EE. UU. + días del "fin de semana largo"
+function holidaysFor(y){
+  const list = [
+    ["Año Nuevo", new Date(y,0,1)],
+    ["Martin Luther King Jr.", nthDow(y,0,1,3)],
+    ["Presidents' Day", nthDow(y,1,1,3)],
+    ["Memorial Day", lastDow(y,4,1)],
+    ["Juneteenth", new Date(y,5,19)],
+    ["4 de Julio", new Date(y,6,4)],
+    ["Labor Day", nthDow(y,8,1,1)],
+    ["Columbus / Indigenous Peoples' Day", nthDow(y,9,1,2)],
+    ["Veterans Day", new Date(y,10,11)],
+    ["Thanksgiving", nthDow(y,10,4,4)],
+    ["Navidad", new Date(y,11,25)],
+  ];
+  const days = new Map();   // fecha -> nombre (bloque festivo)
+  const exact = new Set();  // fecha exacta del festivo
+  const put = (d,name) => { const k = iso(d); if (!days.has(k)) days.set(k,name); };
+  for (const [name,d] of list){
+    exact.add(iso(d));
+    const dow = d.getDay();
+    if (dow === 1){ put(addDays(d,-2),name); put(addDays(d,-1),name); put(d,name); }          // lunes → sáb-dom-lun
+    else if (dow === 5){ put(d,name); put(addDays(d,1),name); put(addDays(d,2),name); }       // viernes → vie-sáb-dom
+    else if (dow === 6){ put(addDays(d,-1),name); put(d,name); put(addDays(d,1),name); }      // sábado (observado viernes)
+    else if (dow === 0){ put(addDays(d,-1),name); put(d,name); put(addDays(d,1),name); }      // domingo (observado lunes)
+    else if (dow === 4 && name === "Thanksgiving"){ for (let i=0;i<4;i++) put(addDays(d,i),name); }
+    else put(d,name);
+  }
+  // Año Nuevo del año siguiente puede caer en el fin de semana de diciembre
+  const ny = new Date(y+1,0,1); if (ny.getDay()===6 || ny.getDay()===0 || ny.getDay()===1) { const fri = addDays(ny, ny.getDay()===6?-1: ny.getDay()===0?-2:-3); for (let i=0;i<4;i++){ const x = addDays(fri,i); if (x.getFullYear()===y) put(x,"Año Nuevo"); } }
+  return { days, exact };
+}
+// Fechas especiales (no federales) que mueven la asistencia
+function specialsFor(y){
+  const m = new Map();
+  const e = easter(y);
+  m.set(iso(addDays(e,-2)),"Viernes Santo");
+  m.set(iso(e),"Domingo de Resurrección");
+  m.set(iso(nthDow(y,4,0,2)),"Día de la Madre (EE. UU.)");
+  m.set(iso(nthDow(y,5,0,3)),"Día del Padre (EE. UU.)");
+  m.set(`${y}-02-14`,"San Valentín");
+  m.set(`${y}-10-31`,"Halloween");
+  m.set(`${y}-12-24`,"Nochebuena");
+  m.set(`${y}-12-31`,"Fin de año");
+  return m;
+}
+let HOL = holidaysFor(year), SPEC = specialsFor(year);
+
+/* ================= Índices de eventos ================= */
+function eventsByDay(){
+  const map = new Map();
+  for (const ev of data.eventos){
+    const n = Math.max(0, diffDays(ev.inicio, ev.fin));
+    for (let i=0;i<=n;i++){ const k = iso(addDays(parse(ev.inicio),i)); if (!map.has(k)) map.set(k,[]); map.get(k).push(ev); }
+  }
+  return map;
+}
+const catColor = c => `var(--c-${CATS[c]?c:"otro"})`;
+const audColor = ev => ev.publico === "grupo" ? "var(--grupo)" : "var(--iglesia)";
+const audLabel = ev => ev.publico === "grupo" ? ("Grupo" + (ev.grupo ? ": " + ev.grupo : " específico")) : "Toda la iglesia";
+const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const isGroup = ev => ev.publico === "grupo";
+
+/* ================= Choques y alertas ================= */
+function monthStats(m, byDay){
+  const evs = data.eventos.filter(ev => { const s=parse(ev.inicio), f=parse(ev.fin); return s <= new Date(year,m+1,0) && f >= new Date(year,m,1); });
+  let suns = 0, sunsEv = 0;
+  for (let d=1; d<=new Date(year,m+1,0).getDate(); d++){ const dt = new Date(year,m,d); if (dt.getDay()===0){ suns++; if (byDay.has(iso(dt))) sunsEv++; } }
+  const score = evs.length + sunsEv*0.5;
+  const lvl = score < 2 ? 0 : score < 3.5 ? 1 : score < 5 ? 2 : 3;
+  return { evs, suns, sunsEv, score, lvl, lvlName: ["Ligero","Moderado","Cargado","Muy cargado"][lvl] };
+}
+// Problemas de un rango de fechas (para el diálogo y al mover)
+function issuesFor(inicio, fin, excludeId){
+  const out = []; if (!inicio) return out; if (!fin || fin < inicio) fin = inicio;
+  const H = holidaysFor(parse(inicio).getFullYear()), S = specialsFor(parse(inicio).getFullYear());
+  const n = diffDays(inicio, fin), days = Array.from({length:n+1}, (_,i)=>iso(addDays(parse(inicio),i)));
+  const hol = days.find(k => H.days.has(k)); if (hol) out.push(`Cae en el fin de semana festivo de ${H.days.get(hol)}.`);
+  const sp = days.find(k => S.has(k)); if (sp) out.push(`Coincide con ${S.get(sp)}.`);
+  const others = data.eventos.filter(e => e.id !== excludeId);
+  const same = others.filter(e => e.inicio <= fin && e.fin >= inicio);
+  if (same.length) out.push(`Ese día ya hay: ${same.map(e=>e.nombre).join(", ")}.`);
+  const near = others.filter(e => !same.includes(e) && (Math.abs(diffDays(e.fin, inicio)) <= 2 && e.fin < inicio || Math.abs(diffDays(fin, e.inicio)) <= 2 && e.inicio > fin));
+  if (near.length) out.push(`Queda pegado a: ${near.map(e=>`${e.nombre} (${fmt(e.inicio)})`).join(", ")}.`);
+  return out;
+}
+function computeAlerts(byDay){
+  const list = [];
+  const evs = data.eventos.filter(e => parse(e.inicio).getFullYear()===year || parse(e.fin).getFullYear()===year).sort((a,b)=>a.inicio.localeCompare(b.inicio));
+  for (const ev of evs){
+    const n = diffDays(ev.inicio, ev.fin);
+    for (let i=0;i<=n;i++){ const k = iso(addDays(parse(ev.inicio),i)); if (HOL.days.has(k)){ list.push({ date:k, w:true, t:`${ev.nombre} cae en el fin de semana de ${HOL.days.get(k)}`, s:fmtRange(ev.inicio, ev.fin) }); break; } }
+  }
+  const seen = new Set();
+  for (const [k, arr] of byDay){ if (arr.length < 2 || parse(k).getFullYear() !== year) continue;
+    const key = arr.map(e=>e.id).sort().join("|"); if (seen.has(key)) continue; seen.add(key);
+    list.push({ date:k, w:true, t:`${arr.map(e=>e.nombre).join(" y ")} caen el mismo día`, s:fmt(k) }); }
+  for (let i=0;i<evs.length-1;i++){ const a = evs[i], b = evs[i+1]; const gap = diffDays(a.fin, b.inicio) - 1;
+    if (gap >= 0 && gap <= 1) list.push({ date:b.inicio, w:false, t:`${a.nombre} y ${b.nombre} quedan pegados`, s:`${fmtRange(a.inicio,a.fin)} → ${fmtRange(b.inicio,b.fin)}${gap===0?" (días seguidos)":" (1 día entre ambos)"}` }); }
+  for (let m=0;m<12;m++){ const st = monthStats(m, byDay); if (st.lvl === 3) list.push({ date:`${year}-${pad(m+1)}-01`, w:false, t:`${MONTHS[m]} está muy cargado`, s:`${st.evs.length} eventos · ${st.sunsEv}/${st.suns} domingos ocupados`, month:true }); }
+  list.sort((a,b) => (b.w - a.w) || a.date.localeCompare(b.date));
+  return list;
+}
+function renderAlerts(byDay){
+  const list = computeAlerts(byDay), ul = $("#alertList"); ul.innerHTML = "";
+  $("#alertCount").textContent = `(${list.length})`;
+  if (!list.length){ ul.innerHTML = `<li style="cursor:default"><span class="ic">✓</span><div>Sin alertas por ahora.</div></li>`; return; }
+  list.forEach(a => {
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="ic ${a.w?"w":""}">${a.w?"!":"i"}</span><div><span class="t"></span><small></small></div>`;
+    li.querySelector(".t").textContent = a.t; li.querySelector("small").textContent = a.s;
+    li.onclick = () => { selectedDate = a.month ? null : a.date; render(); scrollToDate(a.date, true); };
+    ul.appendChild(li);
+  });
+}
+function renderHeader(){
+  const tl = data.lema && year === (data.anio || year) ? `${data.lema} ${year}` : "";
+  $("#lema").textContent = tl; $("#lema").classList.toggle("hide", !tl);
+  const evs = data.eventos.filter(e => parse(e.inicio).getFullYear()===year);
+  const t = evs.filter(e => e.tentativo).length, d = $("#draft");
+  if (t){ d.innerHTML = `<b>Borrador para revisión.</b><span>${t} de ${evs.length} fechas de ${year} son tentativas (borde punteado). Se confirman quitando la marca de “tentativo”.</span>`; d.classList.add("show"); }
+  else d.classList.remove("show");
+}
+
+/* ================= Render ================= */
+function render(){
+  HOL = holidaysFor(year); SPEC = specialsFor(year);
+  $("#yearLabel").textContent = year;
+  const byDay = eventsByDay(); DAYMAP = byDay;
+  const showSpecial = $("#showSpecial").checked;
+  const wrap = $("#months"); wrap.innerHTML = "";
+  for (let m=0;m<12;m++){
+    // carga del mes
+    const { evs, suns, sunsEv, score, lvl, lvlName } = monthStats(m, byDay);
+    const pct = Math.min(100, Math.round(score/6*100));
+
+    const card = document.createElement("section");
+    card.className = "month"; card.dataset.month = m;
+    card.innerHTML = `<div class="mhead"><h3>${MONTHS[m]}</h3><span class="mstat">${evs.length} evento${evs.length===1?"":"s"}${evs.length?` (${evs.filter(e=>!isGroup(e)).length} igl.)`:""} · ${sunsEv}/${suns} dom.</span></div>
+      <div class="loadrow"><div class="load" title="${lvlName}"><i class="lvl-${lvl}" style="width:${Math.max(pct,4)}%"></i></div><span class="lvlw">${lvlName}</span></div>
+      <div class="dow">${DOWS.map(d=>`<span>${d}</span>`).join("")}</div>`;
+    const grid = document.createElement("div"); grid.className = "grid";
+    const first = new Date(year,m,1).getDay();
+    for (let i=0;i<first;i++){ const e = document.createElement("div"); e.className="day empty"; grid.appendChild(e); }
+    for (let d=1; d<=new Date(year,m+1,0).getDate(); d++){
+      const dt = new Date(year,m,d), k = iso(dt), dow = dt.getDay();
+      const evd = byDay.get(k) || [];
+      const cell = document.createElement("div");
+      cell.className = "day"; cell.dataset.date = k; cell.textContent = d;
+      if (dow === 0 && !evd.length) cell.classList.add("sun");
+      else if (dow === 3 && !evd.length) cell.classList.add("wed");
+      if (evd.length){
+        const church = evd.filter(e => !isGroup(e)), main = church.length ? church : evd;
+        cell.style.setProperty("--evc", audColor(main[0])); cell.style.setProperty("--evi", isGroup(main[0]) ? "var(--gr-ink)" : "var(--ig-ink)");
+        cell.classList.add(dow === 0 ? "evsun" : "evwk");
+        if (main.every(e => e.tentativo)) cell.classList.add("tent");
+      }
+      if (HOL.days.has(k)) cell.classList.add("hol");
+      if (HOL.exact.has(k)) cell.classList.add("holday");
+      if (showSpecial && SPEC.has(k)) cell.classList.add("special");
+      if (k === todayIso) cell.classList.add("today");
+      if (k === selectedDate) cell.classList.add("selected");
+      const r = recs.get(k); if (r !== undefined) cell.classList.add(r >= 80 ? "rec-a" : "rec-b");
+      if (evd.length && dow !== 0){
+        const dots = document.createElement("div"); dots.className = "dots";
+        evd.slice(0,3).forEach(ev => { const i = document.createElement("i"); i.style.background = audColor(ev); i.style.setProperty("--c", audColor(ev)); if (ev.tentativo) i.className = "hollow"; dots.appendChild(i); });
+        cell.appendChild(dots);
+      }
+      grid.appendChild(cell);
+    }
+    card.appendChild(grid);
+    wrap.appendChild(card);
+  }
+  renderList(); renderDay(); renderAlerts(byDay); renderHeader(); updateUndo();
+  document.body.classList.toggle("movemode", !!moving);
+}
+
+function renderList(){
+  const list = $("#evList"); list.innerHTML = "";
+  const evs = data.eventos.filter(e => parse(e.inicio).getFullYear()===year || parse(e.fin).getFullYear()===year).sort((a,b)=>a.inicio.localeCompare(b.inicio));
+  $("#evCount").textContent = `(${evs.length})`;
+  $("#evHint").textContent = editing ? "Toca para editar. Para mover un evento tentativo: mantén presionado su día en el calendario y arrástralo (o arrástralo desde esta lista)." : "Toca un evento para ver detalles.";
+  let lastM = -1;
+  for (const ev of evs){
+    const m = parse(ev.inicio).getMonth();
+    if (m !== lastM){ const h = document.createElement("div"); h.className="evmonth"; h.textContent = MONTHS[m]; list.appendChild(h); lastM = m; }
+    const row = document.createElement("div"); row.className = "ev"; row.dataset.id = ev.id;
+    row.innerHTML = `<span class="c" style="background:${audColor(ev)}"></span><span class="n"></span><span class="d">${fmtRange(ev.inicio,ev.fin)}</span>`;
+    row.querySelector(".n").textContent = ev.nombre;
+    if (ev.tentativo){ const t = document.createElement("span"); t.className="tent"; t.textContent="tent."; row.querySelector(".n").after(t); }
+    row.addEventListener("click", () => { selectedDate = ev.inicio; openEvent(ev); render(); scrollToDate(ev.inicio); });
+    if (editing){
+      row.draggable = true;
+      row.addEventListener("dragstart", e => { e.dataTransfer.setData("text/plain", ev.id); row.classList.add("dragging"); });
+      row.addEventListener("dragend", () => row.classList.remove("dragging"));
+    }
+    list.appendChild(row);
+  }
+  if (!evs.length) list.innerHTML = `<p class="muted">No hay eventos en ${year}.</p>`;
+}
+
+function renderDay(){
+  const p = $("#dayPanel");
+  if (!selectedDate){ p.classList.add("hide"); return; }
+  p.classList.remove("hide");
+  const k = selectedDate, d = parse(k), dow = d.getDay();
+  const evd = eventsByDay().get(k) || [];
+  let html = `<h2>${DOWL[dow][0].toUpperCase()+DOWL[dow].slice(1)} ${d.getDate()} de ${MONTHS[d.getMonth()].toLowerCase()}</h2><div class="row" style="flex:none;gap:6px">`;
+  if (dow===0) html += `<span class="tag" style="flex:none">Servicio dominical</span>`;
+  if (dow===3) html += `<span class="tag" style="flex:none">Servicio Entre Semana</span>`;
+  if (HOL.days.has(k)) html += `<span class="tag hol" style="flex:none">Festivo: ${HOL.days.get(k)}</span>`;
+  if (SPEC.has(k)) html += `<span class="tag" style="flex:none">★ ${SPEC.get(k)}</span>`;
+  if (recs.has(k)) html += `<span class="tag" style="flex:none;color:var(--rec1);border-color:var(--rec1)">Recomendada · ${recs.get(k)}</span>`;
+  html += `</div>`;
+  p.innerHTML = html;
+  if (!evd.length){ const e = document.createElement("p"); e.className="muted"; e.style.margin="4px 0"; e.textContent = "Sin eventos este día."; p.appendChild(e); }
+  evd.forEach(ev => {
+    const it = document.createElement("div"); it.className = "item";
+    it.innerHTML = `<span class="c" style="width:8px;height:8px;border-radius:50%;background:${audColor(ev)}"></span><div style="flex:1"><div class="n" style="font-weight:600"></div><div class="why">${fmtRange(ev.inicio,ev.fin)} · ${esc(audLabel(ev))} · ${CATS[ev.categoria]||"Otro"}${ev.tentativo?" · tentativo":""}</div><div class="why notes"></div></div>`;
+    it.querySelector(".n").textContent = ev.nombre;
+    it.querySelector(".notes").textContent = ev.notas || "";
+    const b = document.createElement("button"); b.className = "btn small"; b.textContent = editing ? "Editar" : "Ver";
+    b.onclick = () => openEvent(ev); it.appendChild(b);
+    p.appendChild(it);
+  });
+  if (editing){
+    const add = document.createElement("button"); add.className = "btn small"; add.style.marginTop = "8px"; add.textContent = "+ Agregar evento este día";
+    add.onclick = () => openEvent(null, k); p.appendChild(add);
+  }
+}
+
+function scrollToDate(k, force){
+  const el = document.querySelector(`.day[data-date="${k}"]`);
+  if (el && (force || window.innerWidth <= 1100)) el.closest(".month").scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+/* ================= Interacción calendario ================= */
+$("#months").addEventListener("click", e => {
+  if (suppressClick){ suppressClick = false; return; }
+  const cell = e.target.closest(".day"); if (!cell || cell.classList.contains("empty")) return;
+  const k = cell.dataset.date;
+  if (moving){ moveEvent(moving, k); return; }
+  selectedDate = selectedDate === k ? null : k;
+  render();
+  if (selectedDate && window.innerWidth <= 1100) $("#dayPanel").scrollIntoView({behavior:"smooth",block:"start"});
+});
+/* ===== Mantener presionado y arrastrar (mouse y táctil) ===== */
+// Solo eventos tentativos. En eventos de varios días se mueve el bloque completo,
+// manteniendo el día que agarraste bajo el dedo/cursor.
+let suppressClick = false, hold = null, drag = null;
+const chip = $("#dragChip");
+function pickEvent(k){
+  const evs = (DAYMAP.get(k) || []);
+  return evs.find(e => e.tentativo) || null;
+}
+function clearGhost(){ document.querySelectorAll(".day.ghost").forEach(c => { c.classList.remove("ghost","bad"); c.style.removeProperty("--gc"); }); }
+function paintDrag(targetK){
+  clearGhost();
+  if (!targetK){ chip.innerHTML = `${esc(drag.ev.nombre)}<small>Suelta sobre un día</small>`; drag.newStart = null; return; }
+  const start = iso(addDays(parse(targetK), -drag.offset)), end = iso(addDays(parse(start), drag.len));
+  drag.newStart = start;
+  const iss = issuesFor(start, end, drag.ev.id);
+  for (let i=0;i<=drag.len;i++){ const c = document.querySelector(`.day[data-date="${iso(addDays(parse(start),i))}"]`); if (c){ c.classList.add("ghost"); c.style.setProperty("--gc", audColor(drag.ev)); if (iss.length) c.classList.add("bad"); } }
+  chip.innerHTML = `${esc(drag.ev.nombre)}<small>${fmtRange(start,end)}${iss.length ? ` · <span class="w">⚠ ${esc(iss[0])}</span>` : ""}</small>`;
+}
+function startDrag(cell, ev, x, y){
+  drag = { ev, len: diffDays(ev.inicio, ev.fin), offset: diffDays(ev.inicio, cell.dataset.date), newStart: null, x, y };
+  document.body.classList.add("dragging"); hideTip();
+  document.querySelectorAll(".day").forEach(c => { const k = c.dataset.date; if (k && k >= ev.inicio && k <= ev.fin) c.classList.add("drag-src"); });
+  chip.style.display = "block"; moveChip(x, y); paintDrag(cell.dataset.date);
+  if (navigator.vibrate) try{ navigator.vibrate(15); }catch(_){}
+}
+function moveChip(x, y){ chip.style.left = x + "px"; chip.style.top = y + "px"; }
+function endDrag(commit){
+  if (!drag) return;
+  const { ev, newStart } = drag;
+  clearGhost(); document.querySelectorAll(".day.drag-src").forEach(c => c.classList.remove("drag-src"));
+  document.body.classList.remove("dragging"); chip.style.display = "none";
+  clearInterval(autoScroll); autoScroll = null; drag = null; suppressClick = true;
+  setTimeout(() => { suppressClick = false; }, 250);
+  if (commit && newStart && newStart !== ev.inicio) moveEvent(ev.id, newStart);
+}
+let autoScroll = null, lastY = 0;
+function cancelHold(){ if (hold){ clearTimeout(hold.t); hold.cell.classList.remove("holding"); hold = null; } }
+$("#months").addEventListener("pointerdown", e => {
+  if (!editing || moving || e.button > 0) return;
+  const cell = e.target.closest(".day:not(.empty)"); if (!cell) return;
+  const k = cell.dataset.date, any = DAYMAP.get(k);
+  if (!any || !any.length) return;
+  const ev = pickEvent(k);
+  const wait = e.pointerType === "mouse" ? 250 : 400;
+  hold = { cell, x: e.clientX, y: e.clientY, t: setTimeout(() => {
+    const h = hold; hold = null; h.cell.classList.remove("holding");
+    if (!ev){ suppressClick = true; setTimeout(()=>suppressClick=false, 400); toast("Este evento ya es oficial. Para moverlo, márcalo como tentativo o usa “Mover”.", 4000); return; }
+    startDrag(h.cell, ev, h.x, h.y);
+  }, wait) };
+  cell.classList.add("holding");
+});
+window.addEventListener("pointermove", e => {
+  if (hold && Math.hypot(e.clientX - hold.x, e.clientY - hold.y) > 8) cancelHold();   // se está desplazando, no arrastrando
+  if (hold){ hold.x = e.clientX; hold.y = e.clientY; }
+  if (!drag) return;
+  e.preventDefault(); dragMoveTo(e.clientX, e.clientY);
+}, { passive: false });
+function dragMoveTo(x, y){
+  moveChip(x, y); lastY = y;
+  const el = document.elementFromPoint(x, y);
+  const c = el && el.closest(".day:not(.empty)");
+  paintDrag(c ? c.dataset.date : null);
+  const edge = 70;
+  if ((lastY < edge || lastY > innerHeight - edge) && !autoScroll){
+    autoScroll = setInterval(() => { if (!drag) return; const dy = lastY < edge ? -14 : lastY > innerHeight - edge ? 14 : 0; if (dy) window.scrollBy(0, dy); }, 16);
+  } else if (lastY >= edge && lastY <= innerHeight - edge && autoScroll){ clearInterval(autoScroll); autoScroll = null; }
+}
+let lastPointerType = "mouse";
+window.addEventListener("pointerdown", e => { lastPointerType = e.pointerType; }, true);
+window.addEventListener("pointerup", () => { cancelHold(); endDrag(true); });
+// En táctil, algunos navegadores cancelan el puntero; seguimos el arrastre con eventos touch
+window.addEventListener("pointercancel", () => { cancelHold(); if (drag && lastPointerType !== "touch") endDrag(false); });
+document.addEventListener("touchend", () => { if (drag) endDrag(true); });
+document.addEventListener("touchcancel", () => { if (drag) endDrag(false); });
+window.addEventListener("keydown", e => { if (e.key === "Escape" && drag) endDrag(false); });
+// En iPhone/Android: impedir que la página se desplace mientras se arrastra
+document.addEventListener("touchmove", e => { if (!drag) return; e.preventDefault(); const t = e.touches[0]; if (t) dragMoveTo(t.clientX, t.clientY); }, { passive: false });
+$("#months").addEventListener("contextmenu", e => { if (editing && (hold || drag)) e.preventDefault(); });
+
+// arrastrar desde la lista al calendario
+$("#months").addEventListener("dragover", e => { const c = e.target.closest(".day:not(.empty)"); if (c && editing){ e.preventDefault(); document.querySelectorAll(".day.drop").forEach(x=>x.classList.remove("drop")); c.classList.add("drop"); } });
+$("#months").addEventListener("dragleave", e => { const c = e.target.closest(".day"); if (c) c.classList.remove("drop"); });
+$("#months").addEventListener("drop", e => { const c = e.target.closest(".day:not(.empty)"); if (!c || !editing) return; e.preventDefault(); c.classList.remove("drop"); const id = e.dataTransfer.getData("text/plain"); if (id) moveEvent(id, c.dataset.date); });
+
+function moveEvent(id, newStart){
+  const ev = data.eventos.find(x => x.id === id); if (!ev) return;
+  const len = diffDays(ev.inicio, ev.fin);
+  if (newStart === ev.inicio){ moving = null; $("#moveBanner").classList.remove("show"); render(); return; }
+  pushUndo(`mover “${ev.nombre}”`);
+  ev.inicio = newStart; ev.fin = iso(addDays(parse(newStart), len));
+  moving = null; $("#moveBanner").classList.remove("show");
+  selectedDate = newStart; changed(); render();
+  const iss = issuesFor(ev.inicio, ev.fin, ev.id);
+  toast(`“${ev.nombre}” movido a ${fmtRange(ev.inicio, ev.fin)}` + (iss.length ? ` · ⚠ ${iss[0]}` : ""), iss.length ? 5000 : 0);
+}
+$("#moveCancel").onclick = () => { moving = null; $("#moveBanner").classList.remove("show"); render(); };
+
+/* ================= Deshacer ================= */
+function pushUndo(label){ undoStack.push({ label, snap: JSON.stringify(data.eventos) }); if (undoStack.length > 30) undoStack.shift(); }
+function updateUndo(){ const b = $("#undoBtn"); b.classList.toggle("hide", !editing); b.disabled = !undoStack.length; b.title = undoStack.length ? `Deshacer: ${undoStack[undoStack.length-1].label} (Ctrl/⌘+Z)` : "Nada que deshacer"; }
+function undo(){
+  const u = undoStack.pop(); if (!u) return;
+  data.eventos = JSON.parse(u.snap); changed(); render(); toast(`Deshecho: ${u.label}`);
+}
+$("#undoBtn").onclick = undo;
+document.addEventListener("keydown", e => {
+  if (!editing || !(e.metaKey || e.ctrlKey) || e.key.toLowerCase() !== "z" || e.shiftKey) return;
+  if (e.target.closest("input,textarea,select") || document.querySelector("dialog[open]")) return;
+  e.preventDefault(); undo();
+});
+$("#printBtn").onclick = () => window.print();
+
+/* ================= Diálogo de evento ================= */
+let editingId = null;
+function openEvent(ev, dateK){
+  const dlg = $("#evDlg"), ro = !editing;
+  editingId = ev ? ev.id : null;
+  $("#evDlgTitle").textContent = ev ? (ro ? ev.nombre : "Editar evento") : "Nuevo evento";
+  $("#fName").value = ev ? ev.nombre : "";
+  $("#fStart").value = ev ? ev.inicio : (dateK || `${year}-01-01`);
+  $("#fEnd").value = ev ? ev.fin : (dateK || `${year}-01-01`);
+  $("#fCat").value = ev ? (CATS[ev.categoria] ? ev.categoria : "otro") : "comunidad";
+  $("#fPub").value = ev && ev.publico === "grupo" ? "grupo" : "iglesia";
+  $("#fGrupo").value = ev ? (ev.grupo || "") : "";
+  $("#fGrupoWrap").classList.toggle("hide", $("#fPub").value !== "grupo");
+  $("#fNotes").value = ev ? (ev.notas || "") : "";
+  $("#fTent").checked = ev ? !!ev.tentativo : true;
+  dlg.querySelectorAll("input,select,textarea").forEach(x => x.disabled = ro);
+  $("#evSave").classList.toggle("hide", ro);
+  $("#evDelete").classList.toggle("hide", ro || !ev);
+  $("#evMove").classList.toggle("hide", ro || !ev);
+  $("#evCancel").textContent = ro ? "Cerrar" : "Cancelar";
+  updateWarn();
+  dlg.showModal();
+}
+function updateWarn(){
+  const iss = issuesFor($("#fStart").value, $("#fEnd").value, editingId), w = $("#evWarn");
+  w.innerHTML = ""; iss.forEach(t => { const d = document.createElement("div"); d.textContent = t; w.appendChild(d); });
+  w.classList.toggle("show", iss.length > 0);
+}
+$("#fStart").addEventListener("change", () => { if ($("#fEnd").value < $("#fStart").value) $("#fEnd").value = $("#fStart").value; updateWarn(); });
+$("#fEnd").addEventListener("change", updateWarn);
+$("#fStart").addEventListener("input", updateWarn);
+$("#evCancel").onclick = () => $("#evDlg").close();
+$("#fPub").addEventListener("change", () => $("#fGrupoWrap").classList.toggle("hide", $("#fPub").value !== "grupo"));
+$("#evForm").addEventListener("submit", e => {
+  if (!editing) return;
+  const nombre = $("#fName").value.trim(); let inicio = $("#fStart").value, fin = $("#fEnd").value;
+  if (!nombre || !inicio){ e.preventDefault(); return; }
+  if (!fin || fin < inicio) fin = inicio;
+  const rec = { nombre, inicio, fin, categoria: $("#fCat").value, publico: $("#fPub").value, tentativo: $("#fTent").checked };
+  const grupo = $("#fGrupo").value.trim(); if (rec.publico === "grupo" && grupo) rec.grupo = grupo;
+  const notas = $("#fNotes").value.trim(); if (notas) rec.notas = notas;
+  pushUndo(editingId ? `editar “${nombre}”` : `agregar “${nombre}”`);
+  if (editingId){ const ev = data.eventos.find(x => x.id === editingId); Object.assign(ev, rec); if (!notas) delete ev.notas; if (!rec.grupo) delete ev.grupo; }
+  else data.eventos.push({ id: "e" + Date.now().toString(36), ...rec });
+  selectedDate = inicio; changed(); render();
+});
+$("#evDelete").onclick = () => {
+  const ev = data.eventos.find(x => x.id === editingId); if (!ev) return;
+  if (!confirmInline(`¿Borrar “${ev.nombre}”?`)) return;
+  pushUndo(`borrar “${ev.nombre}”`);
+  data.eventos = data.eventos.filter(x => x.id !== editingId);
+  $("#evDlg").close(); changed(); render(); toast("Evento borrado · puedes deshacerlo");
+};
+// confirmación sin diálogos nativos: segundo clic confirma
+let pendingDelete = 0;
+function confirmInline(){ const now = Date.now(); if (now - pendingDelete < 3000){ pendingDelete = 0; return true; } pendingDelete = now; $("#evDelete").textContent = "¿Seguro? Toca otra vez"; setTimeout(()=>{ $("#evDelete").textContent = "Borrar"; }, 3000); return false; }
+$("#evMove").onclick = () => {
+  const ev = data.eventos.find(x => x.id === editingId); if (!ev) return;
+  moving = ev.id; $("#evDlg").close();
+  $("#moveText").textContent = `Toca el nuevo día de inicio para “${ev.nombre}”.`;
+  $("#moveBanner").classList.add("show"); render();
+};
+$("#addBtn").onclick = () => openEvent(null, selectedDate || `${year}-01-01`);
+
+/* ================= Recomendaciones ================= */
+function fillMonthSelects(){
+  const f = $("#recFrom"), t = $("#recTo");
+  f.innerHTML = t.innerHTML = MONTHS.map((m,i)=>`<option value="${i}">${m}</option>`).join("");
+  f.value = 0; t.value = 11;
+}
+function recommend(){
+  const dow = +$("#recDow").value, dur = +$("#recDur").value;
+  let mFrom = +$("#recFrom").value, mTo = +$("#recTo").value; if (mTo < mFrom) [mFrom,mTo] = [mTo,mFrom];
+  const byDay = eventsByDay();
+  const monthLoad = Array.from({length:12}, (_,m) => data.eventos.filter(ev => { const s=parse(ev.inicio), f=parse(ev.fin); return s <= new Date(year,m+1,0) && f >= new Date(year,m,1); }).length);
+  const out = [];
+  let d = new Date(year, mFrom, 1); while (d.getDay() !== dow) d = addDays(d,1);
+  const end = new Date(year, mTo+1, 0);
+  for (; d <= end; d = addDays(d,7)){
+    const start = iso(d), days = Array.from({length:dur}, (_,i)=>iso(addDays(d,i)));
+    if (start < todayIso) continue;
+    if (days.some(k => byDay.has(k))) continue;               // choque directo
+    let s = 100; const why = [];
+    const hol = days.find(k => HOL.days.has(k));
+    if (hol){ s -= 45; why.push(`fin de semana festivo (${HOL.days.get(hol)})`); }
+    const sp = days.find(k => SPEC.has(k));
+    if (sp){ s -= 25; why.push(SPEC.get(sp)); }
+    if (dow === 3 && dur === 1){ s -= 10; why.push("compite con el Servicio Entre Semana"); }
+    // domingo que toca a este evento: el siguiente (o el mismo si incluye domingo)
+    const sunK = days.find(k => parse(k).getDay()===0) || iso(addDays(parse(days[days.length-1]), (7 - parse(days[days.length-1]).getDay()) % 7 || 7));
+    if (byDay.has(sunK)){ const se = byDay.get(sunK); s -= se.every(isGroup) ? 10 : 20; why.push(`el domingo ${fmt(sunK)} ya tiene ${se[0].nombre}`); }
+    // cercanía a otros eventos
+    const near = new Map();
+    for (let off = -10; off <= 10 + dur - 1; off++){
+      if (off >= 0 && off < dur) continue;
+      const k = iso(addDays(d, off)); const evs = byDay.get(k); if (!evs) continue;
+      const dist = off < 0 ? -off : off - dur + 1;
+      evs.forEach(ev => { if (!near.has(ev.id) || near.get(ev.id).dist > dist) near.set(ev.id, {ev, dist}); });
+    }
+    for (const {ev, dist} of near.values()){
+      if (byDay.get(sunK)?.includes(ev)) continue;
+      const w = isGroup(ev) ? 0.5 : 1;   // un evento de grupo pesa la mitad
+      if (dist <= 3){ s -= 18*w; why.push(`a ${dist} día${dist>1?"s":""} de ${ev.nombre}`); }
+      else { s -= 6*w; }
+    }
+    const nearFar = [...near.values()].filter(x => x.dist > 3).length;
+    if (nearFar) why.push(`${nearFar} evento${nearFar>1?"s":""} en las 2 semanas cercanas`);
+    const ml = monthLoad[d.getMonth()];
+    if (ml > 2){ s -= (ml-2)*5; why.push(`${MONTHS[d.getMonth()]} ya tiene ${ml} eventos`); }
+    const md = d.getMonth()*100 + d.getDate();
+    if (md >= 1220 || md <= 2){ s -= 20; why.push("temporada de fiestas"); }
+    s = Math.max(0, Math.min(100, Math.round(s)));
+    out.push({ start, end: days[days.length-1], score: s, why });
+  }
+  out.sort((a,b) => b.score - a.score || a.start.localeCompare(b.start));
+  recs = new Map(out.filter(r => r.score >= 60).map(r => [r.start, r.score]));
+  const ul = $("#recList"); ul.innerHTML = "";
+  const top = out.slice(0, 8);
+  if (!top.length){ ul.innerHTML = `<li class="muted" style="cursor:default">No hay fechas libres con esos filtros.</li>`; }
+  top.forEach(r => {
+    const li = document.createElement("li");
+    const cls = r.score >= 80 ? "a" : r.score >= 60 ? "b" : "c";
+    li.innerHTML = `<span class="score ${cls}">${r.score}</span><div><div style="font-weight:600">${fmtRange(r.start, r.end)}</div><div class="why"></div></div>`;
+    li.querySelector(".why").textContent = r.why.length ? r.why.join(" · ") : "Semana libre, sin choques cercanos";
+    li.onclick = () => { selectedDate = r.start; render(); scrollToDate(r.start); if (editing){ openEvent(null, r.start); $("#fEnd").value = r.end; updateWarn(); } };
+    ul.appendChild(li);
+  });
+  render();
+}
+$("#recGo").onclick = recommend;
+$("#recClear").onclick = () => { recs = new Map(); $("#recList").innerHTML = ""; render(); };
+
+/* ================= GitHub ================= */
+const api = p => `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${p}`;
+const b64enc = s => { const bytes = new TextEncoder().encode(s); let bin = ""; bytes.forEach(b => bin += String.fromCharCode(b)); return btoa(bin); };
+const b64dec = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,"")), c => c.charCodeAt(0)));
+async function ghGet(path, auth){
+  const h = { "Accept": "application/vnd.github+json" }; if (auth && token) h.Authorization = `Bearer ${token}`;
+  const r = await fetch(`${api(path)}?ref=${CONFIG.branch}&t=${Date.now()}`, { headers: h, cache: "no-store" });
+  if (r.status === 404) return null;
+  if (!r.ok) throw new Error(`GitHub ${r.status}`);
+  const j = await r.json(); return { sha: j.sha, text: b64dec(j.content) };
+}
+async function ghPut(path, text, prevSha, msg, tok){
+  const r = await fetch(api(path), { method: "PUT", headers: { "Accept":"application/vnd.github+json", "Authorization": `Bearer ${tok || token}`, "Content-Type":"application/json" },
+    body: JSON.stringify({ message: msg, content: b64enc(text), branch: CONFIG.branch, ...(prevSha ? { sha: prevSha } : {}) }) });
+  if (!r.ok){ const err = new Error(`GitHub ${r.status}`); err.status = r.status; throw err; }
+  return (await r.json()).content.sha;
+}
+
+async function load(){
+  setStatus("Cargando…");
+  try{
+    if (ONLINE){
+      try{ const f = await ghGet(CONFIG.dataFile, !!token); if (f){ data = JSON.parse(f.text); sha = f.sha; base = f.text; } }
+      catch(e){ const r = await fetch(`${CONFIG.dataFile}?t=${Date.now()}`, {cache:"no-store"}); data = await r.json(); }
+    } else if (window.NW_PREVIEW){
+      data = JSON.parse(JSON.stringify(window.NW_PREVIEW));
+    } else {
+      const r = await fetch(`${CONFIG.dataFile}?t=${Date.now()}`, {cache:"no-store"}); data = await r.json();
+    }
+    if (!Array.isArray(data.eventos)) data.eventos = [];
+    setStatus("");
+  }catch(e){ setStatus("No se pudo cargar el calendario", true); }
+  const years = new Set([data.anio || 2027]); data.eventos.forEach(e => years.add(parse(e.inicio).getFullYear()));
+  const now = new Date().getFullYear(); years.add(now); years.add(now+1);
+  year = data.anio || 2027;
+  $("#yearSel").innerHTML = [...years].sort().map(y => `<option ${y===year?"selected":""}>${y}</option>`).join("");
+  render();
+}
+$("#yearSel").onchange = e => { year = +e.target.value; recs = new Map(); $("#recList").innerHTML=""; selectedDate = null; render(); };
+
+function changed(){
+  dirty = true;
+  if (!ONLINE){ setStatus(LOCAL_EDIT ? "Cambios solo en esta prueba local" : ""); return; }
+  setStatus("Cambios sin guardar…");
+  clearTimeout(saveTimer); saveTimer = setTimeout(save, 1200);
+}
+async function save(){
+  saveTimer = null;
+  if (!ONLINE || !token) return;
+  if (saving){ pendingSave = true; return; }
+  saving = true; pendingSave = false; setStatus("Guardando…");
+  data.actualizado = todayIso;
+  const text = JSON.stringify(data, null, 2) + "\n";
+  try{
+    sha = await ghPut(CONFIG.dataFile, text, sha, `Calendario: actualización ${new Date().toLocaleString("es-US")}`);
+    base = text; dirty = false; setStatus("Guardado ✓");
+  }catch(e){
+    if (e.status === 409 || e.status === 422){
+      // Otra persona guardó antes: combinar SOLO nuestros cambios sobre su versión, sin pisar lo suyo
+      try{
+        const f = await ghGet(CONFIG.dataFile, true);
+        const remote = JSON.parse(f.text), { merged, clashes } = mergeEvents(base ? JSON.parse(base) : { eventos: [] }, data, remote);
+        const mtext = JSON.stringify(merged, null, 2) + "\n";
+        sha = await ghPut(CONFIG.dataFile, mtext, f.sha, "Calendario: actualización (combinada)");
+        data = merged; base = mtext; dirty = false; setStatus("Guardado ✓"); render();
+        toast(clashes.length ? `Otra persona también editó. Se combinaron los cambios; en ${clashes.join(", ")} quedó tu versión.` : "Otra persona también editó. Se combinaron ambos cambios.", 6000);
+      }catch(e2){ setStatus("Error al guardar. Reintenta.", true); }
+    } else if (e.status === 401 || e.status === 403){ setStatus("El token no tiene permiso o expiró", true); }
+    else setStatus("Error al guardar. Revisa la conexión.", true);
+  }
+  saving = false;
+  if (pendingSave) save();
+}
+// Combina por evento: aplica sobre la versión remota solo lo que cambió localmente desde la última sincronización
+function mergeEvents(baseObj, localObj, remoteObj){
+  const map = a => new Map((a.eventos || []).map(e => [e.id, e]));
+  const B = map(baseObj), L = map(localObj), R = map(remoteObj), clashes = [];
+  for (const [id, e] of L){
+    const b = B.get(id), r = R.get(id);
+    if (!b){ R.set(id, e); continue; }                                   // nuevo local
+    if (JSON.stringify(b) !== JSON.stringify(e)){                        // editado local
+      if (r && JSON.stringify(b) !== JSON.stringify(r)) clashes.push(`“${e.nombre}”`);
+      R.set(id, e);
+    }
+  }
+  for (const id of B.keys()) if (!L.has(id)) R.delete(id);               // borrado local
+  return { merged: { ...remoteObj, ...{ actualizado: todayIso }, eventos: [...R.values()].sort((a,b)=>a.inicio.localeCompare(b.inicio)) }, clashes };
+}
+window.addEventListener("beforeunload", e => { if (dirty && editing && ONLINE){ e.preventDefault(); e.returnValue = ""; } });
+
+/* ================= Cifrado del token ================= */
+const u8 = b => new Uint8Array(b);
+const toB64 = b => btoa(String.fromCharCode(...u8(b)));
+const fromB64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function keyFrom(pass, salt){
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({ name:"PBKDF2", salt, iterations: 250000, hash:"SHA-256" }, base, { name:"AES-GCM", length:256 }, false, ["encrypt","decrypt"]);
+}
+async function encryptToken(tok, pass){
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({ name:"AES-GCM", iv }, await keyFrom(pass, salt), new TextEncoder().encode(tok));
+  return { v:1, salt: toB64(salt), iv: toB64(iv), ct: toB64(ct) };
+}
+async function decryptToken(blob, pass){
+  const pt = await crypto.subtle.decrypt({ name:"AES-GCM", iv: fromB64(blob.iv) }, await keyFrom(pass, fromB64(blob.salt)), fromB64(blob.ct));
+  return new TextDecoder().decode(pt);
+}
+
+/* ================= Modo edición ================= */
+function setEditing(on){
+  editing = on; document.body.classList.toggle("editing", on);
+  $("#modePill").textContent = on ? "Editando" : "Solo ver";
+  $("#modePill").classList.toggle("edit", on);
+  $("#editBtn").textContent = on ? "Salir de edición" : "Editar";
+  $("#addBtn").classList.toggle("hide", !on);
+  render();
+}
+let editorBlob = null;
+$("#editBtn").onclick = async () => {
+  if (editing){ if (dirty) await save(); token = null; ss.del("nw-cal-token"); setEditing(false); setStatus(""); return; }
+  if (!ONLINE){ if (LOCAL_EDIT){ setEditing(true); setStatus("Prueba local: los cambios no se guardan"); } else toast("La edición funciona en el link de GitHub Pages"); return; }
+  try{ const f = await ghGet(CONFIG.editorFile, false); editorBlob = f ? JSON.parse(f.text) : null; }
+  catch(e){ toast("No se pudo contactar a GitHub"); return; }
+  if (!editorBlob){ $("#sErr").textContent = ""; $("#setupDlg").showModal(); return; }
+  $("#lErr").textContent = ""; $("#lPass").value = ""; $("#loginDlg").showModal();
+};
+$("#lCancel").onclick = () => $("#loginDlg").close();
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  try{
+    token = await decryptToken(editorBlob, $("#lPass").value);
+    ss.set("nw-cal-token", token);
+    $("#loginDlg").close();
+    await load(); setEditing(true); toast("Modo edición activado. Los cambios se guardan solos.");
+  }catch(err){ $("#lErr").textContent = "Contraseña incorrecta."; }
+});
+$("#sCancel").onclick = () => $("#setupDlg").close();
+$("#setupForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const tok = $("#sTok").value.trim(), p1 = $("#sPass").value, p2 = $("#sPass2").value;
+  if (p1 !== p2){ $("#sErr").textContent = "Las contraseñas no coinciden."; return; }
+  $("#sErr").textContent = "Verificando token…";
+  try{
+    const blob = await encryptToken(tok, p1);
+    const prev = await (async () => { try{ const r = await fetch(`${api(CONFIG.editorFile)}?ref=${CONFIG.branch}`, { headers:{Authorization:`Bearer ${tok}`} }); return r.ok ? (await r.json()).sha : null; }catch(_){ return null; } })();
+    await ghPut(CONFIG.editorFile, JSON.stringify(blob, null, 2) + "\n", prev, "Configurar edición del calendario", tok);
+    token = tok; ss.set("nw-cal-token", token); editorBlob = blob;
+    $("#setupDlg").close(); await load(); setEditing(true); toast("Listo. Desde ahora se edita con la contraseña.");
+  }catch(err){ $("#sErr").textContent = err.status === 401 || err.status === 403 || err.status === 404 ? "El token no tiene permiso de escritura sobre este repo." : "No se pudo guardar. Revisa el token."; }
+});
+
+/* ================= Tooltip al pasar el mouse ================= */
+const tipEl = $("#tip");
+const canHover = window.matchMedia("(hover: hover)").matches;
+function showTip(cell){
+  const k = cell.dataset.date, d = parse(k), dow = d.getDay();
+  const evd = DAYMAP.get(k) || [];
+  let h = `<div class="t-date">${DOWL[dow][0].toUpperCase()+DOWL[dow].slice(1)} ${d.getDate()} de ${MONTHS[d.getMonth()].toLowerCase()}</div>`;
+  if (evd.length){
+    evd.forEach(ev => { h += `<div class="t-ev"><i style="background:${audColor(ev)}"></i><div><b>${esc(ev.nombre)}</b><span class="t-sub">${ev.inicio!==ev.fin ? fmtRange(ev.inicio,ev.fin)+" · " : ""}${esc(audLabel(ev))}${ev.tentativo?" · tentativo":""}</span></div></div>`; });
+  } else h += `<div class="t-sub">Sin eventos</div>`;
+  const meta = [];
+  if (dow===0) meta.push("Servicio dominical"); if (dow===3) meta.push("Servicio Entre Semana");
+  if (SPEC.has(k) && $("#showSpecial").checked) meta.push("★ " + SPEC.get(k));
+  if (recs.has(k)) meta.push(`Recomendada · ${recs.get(k)}/100`);
+  if (meta.length) h += `<div class="t-meta">${meta.map(esc).join(" · ")}</div>`;
+  if (HOL.days.has(k)) h += `<div class="t-meta hol">Festivo: ${esc(HOL.days.get(k))}</div>`;
+  tipEl.innerHTML = h;
+  const r = cell.getBoundingClientRect(), tw = tipEl.offsetWidth, th = tipEl.offsetHeight;
+  let x = r.left + r.width/2 - tw/2, y = r.top - th - 8;
+  if (y < 8) y = r.bottom + 8;
+  x = Math.max(8, Math.min(x, window.innerWidth - tw - 8));
+  tipEl.style.left = x + "px"; tipEl.style.top = y + "px";
+  tipEl.classList.add("show");
+}
+const hideTip = () => tipEl.classList.remove("show");
+if (canHover){
+  $("#months").addEventListener("mouseover", e => { if (document.body.classList.contains("dragging")) return hideTip(); const c = e.target.closest(".day:not(.empty)"); if (c) showTip(c); else hideTip(); });
+  $("#months").addEventListener("mouseleave", hideTip);
+  window.addEventListener("scroll", hideTip, { passive: true });
+  $("#months").addEventListener("click", hideTip);
+}
+
+/* ================= Utilidades ================= */
+function setStatus(t, err){ const s = $("#saveStatus"); s.textContent = t; s.classList.toggle("err", !!err); }
+let tt; function toast(t, ms){ const el = $("#toast"); el.textContent = t; el.classList.add("show"); clearTimeout(tt); tt = setTimeout(()=>el.classList.remove("show"), ms || 2600); }
+$("#showSpecial").onchange = render;
+
+/* ================= Inicio ================= */
+fillMonthSelects();
+token = ss.get("nw-cal-token");
+load().then(() => { if (token && ONLINE) setEditing(true); });
+})();
+</script>
+</body>
+</html>
